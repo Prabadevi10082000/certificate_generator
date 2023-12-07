@@ -1,0 +1,42 @@
+<!-- app/views/certificate_generator/generate_certificate_form.html.erb -->
+
+<h1>Generate Certificate</h1>
+
+<form id="generateCertificateForm">
+  <label for="common_name">Common Name:</label>
+  <input type="text" id="common_name" name="common_name" value="example.com">
+  <button type="button" onclick="generateCertificate()">Generate Certificate</button>
+</form>
+
+<script>
+  function generateCertificate() {
+    var commonName = document.getElementById('common_name').value;
+
+    // Make an AJAX request to the server to generate the certificate
+    fetch('/create_certificate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content, // Include CSRF token in headers
+      },
+      body: JSON.stringify({ common_name: commonName }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Redirect to the view_certificates action on success
+        window.location.href = '/view_certificates';
+      } else {
+        // Handle error, show a message, etc.
+        console.error('Error:', data.error);
+        alert('Certificate generation failed. Please try again.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle error, show a message, etc.
+      alert('An unexpected error occurred. Please try again.');
+    });
+  }
+</script>

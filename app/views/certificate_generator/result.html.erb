@@ -1,0 +1,17 @@
+<!-- app/views/certificate_generator/result.html.erb -->
+
+<h1>Certificate Generated Successfully!</h1>
+
+<p>
+  Common Name: <%= @common_name %>
+</p>
+
+<p>
+  CA Certificate:<br>
+  <pre><%= @ca_cert.to_pem %></pre>
+</p>
+
+<p>
+  Server Certificate:<br>
+  <pre><%= @server_cert.to_pem %></pre>
+</p>

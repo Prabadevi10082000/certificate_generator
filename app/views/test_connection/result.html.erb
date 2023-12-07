@@ -1,0 +1,14 @@
+<h1>SSL Certificate Expiration Verification</h1>
+
+<% if @result.present? %>
+  <p>
+    Expiration Date: <%= @result %>
+  </p>
+  <p>
+    Certificate is valid!
+  </p>
+<% else %>
+  <p>
+    Certificate verification failed.
+  </p>
+<% end %>

@@ -1,0 +1,15 @@
+<!-- app/views/certificates/index.html.erb -->
+
+<h1>Certificates</h1>
+
+<ul>
+  <% @certificates.each do |certificate| %>
+    <li>
+      <strong>ID:</strong> <%= certificate.id %><br>
+      <strong>Common Name:</strong> <%= certificate.common_name %><br>
+      <strong>CA Certificate:</strong> <%= certificate.ca_cert %><br>
+      <strong>Server Certificate:</strong> <%= certificate.server_cert %><br>
+      <strong>Expiration Date:</strong> <%= certificate.expiration_date %>
+    </li>
+  <% end %>
+</ul>
